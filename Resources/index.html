@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/.nekoweb-api/static/site.js" type="text/javascript" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalBridge PH - Free Philippine Legal Resources</title>
+     <link rel="icon" href="justice.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c9a961;
+            --primary-light: #d4b76f;
+            --accent: #8ab4a6;
+            --accent-dark: #6a9485;
+            --dark: #0a0e0d;
+            --bg: #0f1413;
+            --bg-elevated: #151b19;
+            --card-bg: #1a2320;
+            --card-hover: #212e2a;
+            --text: #e8ebe9;
+            --text-muted: #a0aea8;
+            --text-dim: #6b7874;
+            --border: #2a3532;
+            --border-bright: #3a4542;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --glow: rgba(201, 169, 97, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a0e0d 0%, #1a2320 50%, #0f1714 100%);
+            color: var(--text);
+            padding: 5rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-bright);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 169, 97, 0.03) 50px, rgba(201, 169, 97, 0.03) 51px),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 169, 97, 0.03) 50px, rgba(201, 169, 97, 0.03) 51px),
+                radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(138, 180, 166, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at top, rgba(201, 169, 97, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-item:nth-child(2) { animation-delay: 0.1s; }
+        .stat-item:nth-child(3) { animation-delay: 0.2s; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Crimson Pro', serif;
+            color: var(--primary);
+            display: block;
+            text-shadow: 0 0 30px var(--glow);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .controls-section {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            margin: -3rem auto 3rem;
+            max-width: 1400px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px var(--shadow), 0 0 1px var(--border-bright);
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--border-bright);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            font-size: 1.05rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg-elevated);
+            color: var(--text);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--card-bg);
+            box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1), 0 4px 20px rgba(201, 169, 97, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 1.3rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--border);
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            background: var(--card-hover);
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(201, 169, 97, 0.1);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+        }
+
+        .clear-filters {
+            padding: 0.6rem 1.5rem;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-filters:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(138, 180, 166, 0.3);
+        }
+
+        .results-info {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .results-count {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .mission-banner {
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(138, 180, 166, 0.1));
+            border: 1px solid var(--border-bright);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto 3rem;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .mission-quote {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--text);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .mission-author {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .mission-highlight {
+            color: var(--primary);
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out backwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(201, 169, 97, 0.05), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-bright);
+            background: var(--card-hover);
+            border-color: var(--border-bright);
+        }
+
+        .resource-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .resource-card:hover::after {
+            opacity: 1;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--dark);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(201, 169, 97, 0.2);
+        }
+
+        .resource-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .resource-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.6rem 1.2rem;
+            background: rgba(201, 169, 97, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .resource-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(201, 169, 97, 0.3);
+            border-color: var(--primary);
+        }
+
+        .resource-link::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.2;
+        }
+
+        .no-results-text {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-family: 'Crimson Pro', serif;
+        }
+
+        footer {
+            background: var(--dark);
+            color: var(--text);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-contact {
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #2BE67D, #159F8E);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .floating-whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: floatIn 0.6s ease-out;
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .floating-whatsapp-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .floating-whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            animation: ripple 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .whatsapp-icon-float {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 75px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--card-bg);
+            color: var(--text);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border-bright);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--card-bg);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .floating-whatsapp:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                gap: 1.5rem;
+            }
+
+            .controls-section {
+                padding: 1.5rem;
+                margin: -1.5rem 1rem 2rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .floating-whatsapp {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .floating-whatsapp-btn {
+                width: 55px;
+                height: 55px;
+            }
+
+            .whatsapp-icon-float {
+                font-size: 1.8rem;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+
+            .whatsapp-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>LegalBridge PH</h1>
+                <p class="hero-subtitle">Bridging the gap between citizens and justice. Every Filipino deserves to understand their rights, access the law, and navigate the legal system — regardless of background or income. Knowledge of the law should not be a privilege reserved for the few, but a fundamental right accessible to all.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalResources">50</span>
+                        <span class="stat-label">Free Resources</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="categoriesCount">9</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Free Access</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="controls-section">
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search by resource name, description, or keywords..."
+                        autocomplete="off"
+                    >
+                </div>
+            </div>
+            
+            <div class="filters">
+                <span class="filter-label">Filter by Category:</span>
+                <div class="filter-group" id="filterButtons"></div>
+                <button class="clear-filters" id="clearFilters">Clear All</button>
+            </div>
+        </div>
+
+        <div class="results-info">
+            Showing <span class="results-count" id="resultsCount">50</span> of <span id="totalCount">50</span> resources
+        </div>
+
+        <div class="mission-banner">
+            <p class="mission-quote">
+                "The law is not the exclusive domain of lawyers and judges. 
+                <span class="mission-highlight">Every citizen — from the farmer to the fisherman, 
+                from the student to the street vendor — has the right to understand the rules that govern their lives.</span> 
+                Legal knowledge is not a privilege; it is a prerequisite for true democracy."
+            </p>
+            <p class="mission-author">— LegalBridge PH Mission</p>
+        </div>
+
+        <div class="resources-grid" id="resourcesGrid"></div>
+
+        <div class="no-results hidden" id="noResults">
+            <div class="no-results-icon">📚</div>
+            <p class="no-results-text">No resources found matching your criteria. Try adjusting your search or filters.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">Every Citizen Deserves Legal Knowledge</h3>
+            <p class="footer-text">
+                <strong>LegalBridge PH</strong> exists because we believe that understanding the law should not be a luxury. 
+                Whether you're a student, a professional, or an ordinary citizen seeking to understand your rights, 
+                you deserve free and open access to legal resources. The law affects every aspect of our lives — 
+                from employment and housing to family matters and human rights. When citizens know their rights, 
+                they can better protect themselves, make informed decisions, and hold institutions accountable.
+            </p>
+            <p class="footer-text">
+                This platform democratizes legal knowledge by curating 50+ completely free resources. 
+                We believe that <em>ignorance of the law should not excuse anyone from compliance, 
+                but neither should complexity of access prevent anyone from understanding it</em>.
+            </p>
+            <p class="footer-note">
+                <strong>Disclaimer:</strong> While these resources are free and reliable, always verify the most current 
+                versions of laws and cases through official sources. This directory is maintained 
+                for educational and informational purposes. For specific legal advice, consult with a qualified attorney.
+            </p>
+            
+            <div class="footer-contact">
+                <h4 class="contact-title">💬 Help Us Improve</h4>
+                <p class="contact-text">
+                    Found a broken link? Know of additional free resources? Have suggestions for making legal information 
+                    more accessible to everyday Filipinos? Your feedback helps us serve the community better.
+                </p>
+                <a href="https://api.whatsapp.com/send/?phone=639810848049&text&type=phone_number&app_absent=0" 
+                   class="whatsapp-button" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <span class="whatsapp-icon">💬</span>
+                    Message on WhatsApp
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <span class="whatsapp-tooltip">Need help or have suggestions?</span>
+        <a href="https://api.whatsapp.com/send/?phone=639810848049&text&type=phone_number&app_absent=0" 
+           class="floating-whatsapp-btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="Contact via WhatsApp">
+            <span class="whatsapp-icon-float">💬</span>
+        </a>
+    </div>
+
+    <script>
+        // Legal resources data
+        const legalResources = [
+            {
+                category: "Philippine Laws and Statutes",
+                name: "Official Gazette of the Republic of the Philippines",
+                description: "Official journal publishing laws, executive orders, proclamations, and other government issuances. Full texts of Republic Acts, presidential decrees, and administrative orders.",
+                url: "officialgazette.gov.ph"
+            },
+            {
+                category: "Philippine Laws and Statutes",
+                name: "LawPhil Project (Arellano Law Foundation)",
+                description: "Comprehensive database of Philippine laws, statutes, executive issuances, and constitutions from 1901 onward. Maintained in partnership with the Supreme Court.",
+                url: "lawphil.net"
+            },
+            {
+                category: "Philippine Laws and Statutes",
+                name: "Chan Robles Virtual Law Library (Free Sections)",
+                description: "Free access to full texts of Philippine constitutions, laws, statutes, codes, and executive issuances. Paid features exist but core content is free.",
+                url: "chanrobles.com"
+            },
+            {
+                category: "Philippine Laws and Statutes",
+                name: "Supreme Court E-Library (Laws Section)",
+                description: "Official repository of acts, Batas Pambansa, Commonwealth Acts, constitutions, and executive issuances.",
+                url: "elibrary.judiciary.gov.ph"
+            },
+            {
+                category: "Philippine Laws and Statutes",
+                name: "Philippine Legal Repository",
+                description: "Searchable database of codified laws including the Revised Penal Code, Civil Code, Labor Code, and other special laws with annotations and cross-references.",
+                url: "thecorpusjuris.com/"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "Supreme Court E-Library (Decisions and Resolutions)",
+                description: "Free access to Supreme Court decisions, signed resolutions, and Philippine Reports (official case publications) from 1901 to present, including e-books of historical volumes.",
+                url: "elibrary.judiciary.gov.ph"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "LawPhil Project (Jurisprudence)",
+                description: "Full texts of Supreme Court decisions, Court of Appeals rulings, and other jurisprudence from 1901 onward. Searchable by keyword, date, or citation.",
+                url: "lawphil.net/judjuris/judjuris.html"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "Chan Robles Virtual Law Library (Supreme Court Decisions)",
+                description: "Free searchable database of Supreme Court decisions and resolutions.",
+                url: "chanrobles.com/cralaw"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "Supreme Court of the Philippines Website",
+                description: "Recent decisions, resolutions, and case indices directly from the court.",
+                url: "sc.judiciary.gov.ph"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "Court of Appeals E-Library",
+                description: "Access to Court of Appeals decisions, resolutions, and special proceedings. Includes criminal, civil, and administrative cases with full-text search capability.",
+                url: "services.ca.judiciary.gov.ph/recentdecisions/"
+            },
+            {
+                category: "Jurisprudence (Court Decisions)",
+                name: "Sandiganbayan Decisions Database",
+                description: "Repository of anti-graft and corruption cases, criminal prosecutions of public officials, and related jurisprudence from the Sandiganbayan.",
+                url: "sb.judiciary.gov.ph/recent-decisions/"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Department of Justice (DOJ) Website",
+                description: "Access to legal opinions, circulars, and advisories from the DOJ. Includes resources on human rights, anti-corruption, and international legal cooperation.",
+                url: "doj.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Senate of the Philippines (Issuances Library)",
+                description: "Free access to bills, resolutions, treaties ratified by the Senate, and legislative history.",
+                url: "issuances-library.senate.gov.ph/"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "House of Representatives Website",
+                description: "Bills, laws, committee reports, and congressional records.",
+                url: "congress.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Commission on Human Rights (CHR)",
+                description: "Legal resources on human rights laws, advisories, and reports applicable in the Philippines.",
+                url: "chr.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Presidential Communications Operations Office (PCOO)",
+                description: "Presidential speeches, executive orders, administrative orders, and proclamations. Includes official statements and policy announcements.",
+                url: "pcoo.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "National Economic and Development Authority (NEDA)",
+                description: "Development plans, policy documents, and economic legislation. Includes the Philippine Development Plan and sector-specific policy frameworks.",
+                url: "neda.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Securities and Exchange Commission (SEC)",
+                description: "Corporate governance regulations, securities laws, memorandum circulars, and company registration guidelines.",
+                url: "sec.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Bureau of Internal Revenue (BIR)",
+                description: "Tax laws, revenue regulations, revenue memorandum orders, and revenue memorandum circulars. Essential for taxation research.",
+                url: "bir.gov.ph"
+            },
+            {
+                category: "Government Agencies and Official Publications",
+                name: "Department of Labor and Employment (DOLE)",
+                description: "Labor advisories, department orders, implementing rules on labor standards, occupational safety, and employment regulations.",
+                url: "dole.gov.ph"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "United Nations Treaty Collection (UNTC)",
+                description: "Free database of multilateral treaties ratified by the Philippines, including full texts. Examples: International Covenant on Civil and Political Rights (ratified 1986), Convention on the Rights of the Child (ratified 1990), and Vienna Convention on the Law of Treaties (ratified 1972). Search by country or treaty.",
+                url: "treaties.un.org"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "OHCHR Treaty Body Database",
+                description: "Ratification status and full texts of human rights treaties binding on the Philippines, e.g., International Covenant on Economic, Social and Cultural Rights (ratified 1974), Convention Against Torture (ratified 1986).",
+                url: "tbinternet.ohchr.org"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "University of Minnesota Human Rights Library",
+                description: "Summaries and full texts of human rights treaties ratified by the Philippines, including ILO conventions on labor rights (e.g., Freedom of Association Convention, ratified 1953).",
+                url: "hrlibrary.umn.edu"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "UNCTAD Investment Policy Hub",
+                description: "Free texts of bilateral investment treaties (BITs) binding on the Philippines, e.g., Philippines-United Arab Emirates BIT (2022, signed), Israel-Philippines BIT (2022, in force).",
+                url: "investmentpolicy.unctad.org"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "Treaty on the Prohibition of Nuclear Weapons (TPNW) via ICAN",
+                description: "Full text and status of the TPNW (ratified by Philippines in 2021), binding as international law.",
+                url: "icanw.org/philippines"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "WorldLII (International Treaties)",
+                description: "Searchable database of treaties and international agreements involving the Philippines, integrated with global legal resources.",
+                url: "worldlii.org"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "World Trade Organization (WTO) Documents",
+                description: "Trade agreements, dispute settlement reports, and schedules of commitments binding on the Philippines as a WTO member.",
+                url: "wto.org"
+            },
+            {
+                category: "International Treaties Binding on the Philippines",
+                name: "ASEAN Legal Database",
+                description: "Regional agreements, declarations, and protocols under ASEAN that are binding on the Philippines, including economic and security frameworks.",
+                url: "agreement.asean.org"
+            },
+            {
+                category: "Regional and Comparative Resources",
+                name: "AsianLII (Asian Legal Information Institute)",
+                description: "Free access to Philippine laws, cases, and treaties alongside other Asian jurisdictions. Includes binding regional agreements like ASEAN treaties.",
+                url: "asianlii.org"
+            },
+            {
+                category: "Regional and Comparative Resources",
+                name: "CommonLII (Commonwealth Legal Information Institute)",
+                description: "Comparative legal resources from Commonwealth countries, including Philippine materials and binding international norms adopted via common law.",
+                url: "commonlii.org"
+            },
+            {
+                category: "Regional and Comparative Resources",
+                name: "PacLII (Pacific Islands Legal Information Institute)",
+                description: "Legal materials from Pacific jurisdictions with comparative common law traditions. Useful for researching similar legal systems and precedents.",
+                url: "paclii.org"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "Guide to Law Online: Philippines (Library of Congress)",
+                description: "Comprehensive guide with links to free primary and secondary sources, including texts of laws, court decisions, and international agreements.",
+                url: "guides.loc.gov/law-philippines"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "GlobaLex: Philippine Legal Research",
+                description: "Detailed guide on researching Philippine law, with links to free databases and explanations of the legal system.",
+                url: "nyulawglobal.org/globalex/philippines1.html"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "Free Law Project (CourtListener)",
+                description: "Global archive including some Philippine-related international cases; useful for cross-referencing binding treaties in jurisprudence.",
+                url: "free.law"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "Google Scholar (Legal Opinions and Journals)",
+                description: "Free search for scholarly articles, Philippine case law citations, and international treaty analyses. Filter for legal documents.",
+                url: "scholar.google.com"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "HeinOnline's Open Access Collection",
+                description: "Selected free legal journals, historical legal documents, and international law resources including materials relevant to Philippine jurisprudence.",
+                url: "heinonline.org/HOL/Index?collection=opensearch"
+            },
+            {
+                category: "Legal Research Guides and Tools",
+                name: "SSRN Legal Scholarship Network",
+                description: "Working papers, preprints, and research articles on Philippine law, comparative law, and international legal topics from scholars worldwide.",
+                url: "ssrn.com/index.cfm/en/legal"
+            },
+            {
+                category: "Legal Aid and Access to Justice",
+                name: "Public Attorney's Office (PAO)",
+                description: "Information on free legal assistance for indigent litigants, eligibility requirements, and PAO services nationwide. Includes application forms and guidelines.",
+                url: "pao.gov.ph/contact-us/"
+            },
+            {
+                category: "Legal Aid and Access to Justice",
+                name: "Integrated Bar of the Philippines - Free Legal Aid",
+                description: "IBP's mandatory legal aid program information, pro bono services directory, and legal assistance hotlines.",
+                url: "www.ibp.ph/chapters"
+            },
+            {
+                category: "Legal Aid and Access to Justice",
+                name: "UP Office of Legal Aid",
+                description: "Free legal consultation and representation by law students under faculty supervision. Covers various civil, criminal, and administrative matters.",
+                url: "law.upd.edu.ph/office-of-legal-aid/"
+            },
+            {
+                category: "Legal Aid and Access to Justice",
+                name: "FLAG (Free Legal Assistance Group)",
+                description: "Non-profit providing free legal services for human rights cases, civil liberties, and public interest litigation. Includes educational resources.",
+                url: "grassrootsjusticenetwork.org/connect/organization/free-legal-assistance-group-flag/"
+            },
+            {
+                category: "Legal Aid and Access to Justice",
+                name: "Alternative Law Groups (Saligan)",
+                description: "Community-based legal services focusing on agrarian reform, urban poor rights, and social justice. Offers legal education and representation.",
+                url: "saligan.org"
+            },
+            {
+                category: "Legal Education and Bar Materials",
+                name: "Supreme Court Bar Examination Archives",
+                description: "Past bar examination questions from 1990 onwards. Excellent for law students and bar candidates studying Philippine legal doctrine.",
+                url: "sc.judiciary.gov.ph/bar-matters"
+            },
+            {
+                category: "Legal Education and Bar Materials",
+                name: "Philippine Law School Legal Writing Resources",
+                description: "Compilation of legal writing guides, citation manuals (Philippine legal citation), and brief-writing tutorials from various law schools.",
+                url: "lawphil.net/resources"
+            },
+            {
+                category: "Legal Education and Bar Materials",
+                name: "Ateneo Human Rights Center",
+                description: "Educational materials, policy papers, and research on human rights law in the Philippines. Includes training manuals and case studies.",
+                url: "ahrc.org.ph/resources/"
+            },
+            {
+                category: "Legal Education and Bar Materials",
+                name: "Philippine Judicial Academy (PHILJA)",
+                description: "Judicial training materials, benchbooks, legal education modules for judges and court personnel. Open access to selected publications.",
+                url: "philja.judiciary.gov.ph"
+            },
+            {
+                category: "Specialized Legal Resources",
+                name: "Intellectual Property Office of the Philippines (IPOPHL)",
+                description: "Trademark and patent databases, IP laws, regulations, and guidelines. Free trademark search and patent information retrieval.",
+                url: "ipophil.gov.ph"
+            },
+            {
+                category: "Specialized Legal Resources",
+                name: "Land Registration Authority (LRA)",
+                description: "Information on land titles, registration procedures, property law resources, and land dispute resolution mechanisms.",
+                url: "lra.gov.ph"
+            },
+            {
+                category: "Specialized Legal Resources",
+                name: "Philippine Competition Commission (PCC)",
+                description: "Competition law resources, merger guidelines, antitrust regulations, and enforcement decisions. Essential for corporate and commercial law.",
+                url: "phcc.gov.ph"
+            },
+            {
+                category: "Specialized Legal Resources",
+                name: "National Privacy Commission",
+                description: "Data privacy laws, implementing rules, advisories, and compliance guides for the Data Privacy Act of 2012. Includes breach notification templates.",
+                url: "privacy.gov.ph"
+            }
+        ];
+
+        // State management
+        let activeCategory = null;
+        let searchQuery = '';
+
+        // Get unique categories
+        const categories = [...new Set(legalResources.map(r => r.category))];
+
+        // Initialize the app
+        function init() {
+            renderFilterButtons();
+            renderResources(legalResources);
+            attachEventListeners();
+        }
+
+        // Render filter buttons
+        function renderFilterButtons() {
+            const container = document.getElementById('filterButtons');
+            categories.forEach(category => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = category;
+                btn.dataset.category = category;
+                btn.onclick = () => toggleFilter(category);
+                container.appendChild(btn);
+            });
+        }
+
+        // Toggle filter
+        function toggleFilter(category) {
+            if (activeCategory === category) {
+                activeCategory = null;
+            } else {
+                activeCategory = category;
+            }
+            
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === activeCategory) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            filterAndRenderResources();
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            activeCategory = null;
+            searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            renderResources(legalResources);
+        }
+
+        // Filter resources based on active filters and search
+        function filterAndRenderResources() {
+            let filtered = legalResources;
+
+            // Apply category filter
+            if (activeCategory) {
+                filtered = filtered.filter(r => r.category === activeCategory);
+            }
+
+            // Apply search filter
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filtered = filtered.filter(r => 
+                    r.name.toLowerCase().includes(query) ||
+                    r.description.toLowerCase().includes(query) ||
+                    r.category.toLowerCase().includes(query) ||
+                    r.url.toLowerCase().includes(query)
+                );
+            }
+
+            renderResources(filtered);
+        }
+
+        // Render resources
+        function renderResources(resources) {
+            const grid = document.getElementById('resourcesGrid');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+
+            grid.innerHTML = '';
+
+            if (resources.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                resultsCount.textContent = '0';
+            } else {
+                grid.classList.remove('hidden');
+                noResults.classList.add('hidden');
+                resultsCount.textContent = resources.length;
+
+                resources.forEach((resource, index) => {
+                    const card = createResourceCard(resource, index);
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Create resource card
+        function createResourceCard(resource, index) {
+            const card = document.createElement('div');
+            card.className = 'resource-card';
+            card.style.animationDelay = `${index * 0.05}s`;
+
+            card.innerHTML = `
+                <div class="category-badge">${resource.category}</div>
+                <h3 class="resource-title">${resource.name}</h3>
+                <p class="resource-description">${resource.description}</p>
+                <a href="https://${resource.url}" target="_blank" rel="noopener noreferrer" class="resource-link">
+                    Visit Resource
+                </a>
+            `;
+
+            return card;
+        }
+
+        // Attach event listeners
+        function attachEventListeners() {
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearFilters');
+
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                filterAndRenderResources();
+            });
+
+            clearBtn.addEventListener('click', clearAllFilters);
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
